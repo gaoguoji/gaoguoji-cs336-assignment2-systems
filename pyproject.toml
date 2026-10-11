@@ -17,6 +17,7 @@ dependencies = [
     "pandas>=2",
     "ty>=0.0.29",
     "ruff>=0.15.10",
+    "ipykernel>=7.3.0",
 ]
 
 [build-system]
@@ -31,9 +32,22 @@ module-root = ""
 package = true
 python-preference = "managed"
 
+[[tool.uv.index]]
+name = "tsinghua"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
+
+[[tool.uv.index]]
+name = "pytorch-cn"
+url = "https://mirror.sjtu.edu.cn/pytorch-wheels/cu130"
+explicit = true  # 关键：加上 explicit 表示只有被明确指定的包才来这里找
+
+
 [tool.uv.sources]
 cs336-basics = { path = "./cs336-basics", editable = true } # Change this path to your assignment1-basics repo you want to use your own implementation!
-
+torch = { index = "pytorch-cn" }
+torchvision = { index = "pytorch-cn" }
+torchaudio = { index = "pytorch-cn" }
 
 
 [tool.pytest.ini_options]
